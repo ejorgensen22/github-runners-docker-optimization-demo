@@ -1,0 +1,9 @@
+# syntax=docker/dockerfile:1.4
+FROM ghcr.io/ejorgensen22/toolchain-base:latest
+
+COPY requirements.txt .
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install -r requirements.txt
+
+COPY producer.py .
+CMD ["python", "producer.py"]
